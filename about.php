@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id'])) {
          <div class="swiper-wrapper">
 
             <div class="swiper-slide slide">
-               <img src="images/pic-5.jpg" alt="">
+               <img src="images/pic-1.png" alt="">
                <p>Been using their services for quite a bit and have never had an issue with the quality of their
                   products. Online e-products working great as well. Only issue I have is they usually deliver when I'm
                   a little caught up, though I've set a preferred delivery time. Everything else has been good.</p>
@@ -91,7 +91,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/pic-1.jpg" alt="">
+               <img src="images/pic-2.jpeg" alt="">
                <p>It is the first online services in Nepal which we can trust completely.I always unbox making a video
                   and instantly complain if there's anything wrong. Sometimes even don't need to return the item and
                   they process the refund. SSR do heavy fine to sellers who send wrong products thats why its platform
@@ -123,7 +123,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <div class="swiper-slide slide">
-               <img src="images/pic-7.jpg" alt="">
+               <img src="images/pic-4.jpg" alt="">
                <p>Using SSR for online shopping from almost 3 years. Outstanding experience with them. Game vouchers and
                   pick up point as delivery with 0 shipping charges are super saving services.</p>
                <div class="stars">
@@ -134,37 +134,6 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star-half-alt"></i>
                </div>
                <h3><a href="https://www.facebook.com/fuccheekta.moh.1" target="_blank">Subash Ray</a></h3>
-            </div>
-
-            <div class="swiper-slide slide">
-               <img src="images/pic-2.jpg" alt="">
-               <p>I have been using their services for the last 2 years and I have found them extremely reliable.Their
-                  return policy is what gives you an extra layer of reliance and peace of mind. In case the product
-                  doesn't meet your expectations or if there is any fault in it. then you can return the product within
-                  seven days from the date of delivery.</p>
-               <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-               </div>
-               <h3><a href="https://www.facebook.com/ranjitchaudhary159" target="_blank">Ranjit Chaudhary</a></h3>
-            </div>
-
-            <div class="swiper-slide slide">
-               <img src="images/pic-6.jpg" alt="">
-               <p>SSR is cool! I have ordered hundreds of products from it and never got any scam. It delivers products
-                  in time with out delay. Packaging of products are strong and delivery rates are too low. Just amazing
-                  Website will keep shopping from SSR.</p>
-               <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-               </div>
-               <h3><a href="https://www.facebook.com/pra.x.nil" target="_blank">Pranil Poudel</a></h3>
             </div>
 
          </div>

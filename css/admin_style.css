@@ -45,7 +45,13 @@ html{
 
 body{
    background-color: var(--light-bg);
-   /* padding-bottom: 10rem; */
+   backdrop-filter: blur(5gitpx);
+   padding-bottom: 10rem;
+   background-image: url(../images/logo1.png);
+   background-size: contain;
+   background-position: bottom;
+   background-repeat: no-repeat;
+   height: 100vh;
 }
 
 section{

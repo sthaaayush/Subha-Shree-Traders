@@ -62,13 +62,12 @@ if(isset($_POST['submit'])){
 <?php include 'components/user_header.php'; ?>
 
 <section class="form-container">
-
    <form action="" method="post">
       <h3>Register Now.</h3>
-      <input type="text" name="name" required placeholder="enter your username" maxlength="20"  class="box">
-      <input type="email" name="email" required placeholder="enter your email" maxlength="50"  class="box" >
-      <input type="password" name="pass" required placeholder="enter your password" maxlength="20"  class="box" >
-      <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20"  class="box" >
+      <input type="text" name="name" required placeholder="Enter your Username" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="email" name="email" required placeholder="Enter your Email" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="pass" required placeholder="Enter your Password" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="cpass" required placeholder="Confirm your Password" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="submit" value="register now" class="btn" name="submit">
       <p>Already have an account?</p>
       <a href="user_login.php" class="option-btn">Login Now.</a>

@@ -7,7 +7,7 @@ session_start();
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
-   header('location:admin_login.php');
+   header('location:../user_login.php');
 }
 ;
 
@@ -46,7 +46,7 @@ if (isset($_POST['add_product'])) {
    $select_products->execute([$name]);
 
    if ($select_products->rowCount() > 0) {
-      $message[] = 'product name already exist!';
+      $message = 'product name already exist!';
    } else {
 
       $insert_products = $conn->prepare("INSERT INTO `products`(name, details, price, image_01, image_02, image_03, category_id, quantity) VALUES(?,?,?,?,?,?,?,?)");
@@ -54,12 +54,12 @@ if (isset($_POST['add_product'])) {
 
       if ($insert_products) {
          if ($image_size_01 > 2000000 or $image_size_02 > 2000000 or $image_size_03 > 2000000) {
-            $message[] = 'image size is too large!';
+            $message = 'image size is too large!';
          } else {
             move_uploaded_file($image_tmp_name_01, $image_folder_01);
             move_uploaded_file($image_tmp_name_02, $image_folder_02);
             move_uploaded_file($image_tmp_name_03, $image_folder_03);
-            $message[] = 'new product added!';
+            $message = 'new product added!';
          }
       }
    }

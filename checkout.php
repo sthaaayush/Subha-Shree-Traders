@@ -48,14 +48,14 @@ if (isset($_POST['order'])) {
          // Commit transaction
          $conn->commit();
 
-         $message[] = 'Order placed successfully!';
+         $message = 'Order Placed Successfully!';
       } catch (Exception $e) {
          // Rollback transaction if something goes wrong
          $conn->rollBack();
-         $message[] = 'Failed to place order. Please try again.';
+         $message = 'Failed to place order. Please try again.';
       }
    } else {
-      $message[] = 'Your cart is empty';
+      $message = 'Your cart is empty';
    }
 }
 
@@ -121,7 +121,7 @@ if (isset($_POST['order'])) {
          </div>
          <div class="inputBox">
             <span>Your Number :</span>
-            <input type="number" name="number" placeholder="Enter your number" class="box" min="0" max="10" onkeypress="if(this.value.length == 10) return false;" required>
+            <input type="number" name="number" placeholder="Enter your number" class="box" min="0" maxlength="10" onkeypress="if(this.value.length == 10) return false;" required>
          </div>
          <div class="inputBox">
             <span>Your Email :</span>

@@ -3,11 +3,10 @@
 include '../components/connect.php';
 session_start();
 
-// Check if the user is logged in
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-} else {
-    $user_id = '';
+$admin_id = $_SESSION['admin_id'];
+
+if (!isset($admin_id)) {
+    header('location:../user_login.php');
 }
 
 // Process add category request
@@ -16,9 +15,7 @@ if (isset($_POST['add_category'])) {
     // Add the category to the database
     $add_category = $conn->prepare("INSERT INTO `category` (name) VALUES (?)");
     $add_category->execute([$name]);
-    // Redirect back to the same page after adding category
-    header('Location: category.php');
-    exit;
+    $message = 'New Category Added';
 }
 
 // Process delete request if delete button is clicked
@@ -27,9 +24,7 @@ if (isset($_GET['delete'])) {
     // Delete the category from the database
     $delete_category = $conn->prepare("DELETE FROM `category` WHERE id = ?");
     $delete_category->execute([$delete_id]);
-    // Redirect back to the same page after deletion
-    header('Location: category.php');
-    exit;
+    $message = 'Category Deleted';
 }
 
 // Process update request if update button is clicked
@@ -39,9 +34,7 @@ if (isset($_POST['update_category'])) {
     // Update the category name in the database
     $update_category = $conn->prepare("UPDATE `category` SET name = ? WHERE id = ?");
     $update_category->execute([$new_name, $category_id]);
-    // Redirect back to the same page after update
-    header('Location: category.php');
-    exit;
+    $message = 'Category Updated';
 }
 ?>
 
@@ -54,28 +47,22 @@ if (isset($_POST['update_category'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-   <link rel="icon" href="../images/logo1.png" type="image/png">
+    <link rel="icon" href="../images/logo1.png" type="image/png">
     <link rel="stylesheet" href="../css/admin_style.css">
-    <style>
-        /* Style for the update form */
-        .update-form {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-    </style>
 </head>
 
 <body>
-
+    <?php
+    if (isset($message)) {
+        
+            echo '
+            <div class="message">
+            <span>' . $message . '</span>
+            <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+        </div>
+        ';
+        }
+    ?>
     <?php include '../components/admin_header.php'; ?>
 
     <section class="add-products">
@@ -134,13 +121,14 @@ if (isset($_POST['update_category'])) {
             style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
             <h1 class="heading">Update Category</h1>
 
-            <form action="update_category.php" method="post">
+            <form action="" method="post">
                 <input type="hidden" id="categoryId" name="id">
                 <div class="flex">
                     <div class="inputBox">
                         <span>New Category Name </span>
+                        <input type="hidden" name="category_id" id="category_id" class="box" >
                         <input type="text" class="box" required maxlength="100" placeholder="Enter new category name"
-                            id="newName" name="name">
+                            id="newName" name="new_name">
                     </div>
                 </div>
                 <div class="flex">
@@ -158,7 +146,7 @@ if (isset($_POST['update_category'])) {
     <script>
         // Function to open update form with category id and current name
         function openUpdateForm(id, name) {
-            document.getElementById('categoryId').value = id;
+            document.getElementById('category_id').value = id;
             document.getElementById('newName').value = name;
 
             var updateWindow = document.getElementById('updateForm').style.display;

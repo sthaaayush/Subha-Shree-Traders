@@ -7,7 +7,7 @@ session_start();
 $admin_id = $_SESSION['admin_id'];
 
 if(!isset($admin_id)){
-   header('location:admin_login.php');
+   header('location:../user_login.php');
 }
 
 if(isset($_POST['update'])){
@@ -23,7 +23,7 @@ if(isset($_POST['update'])){
    $update_product = $conn->prepare("UPDATE `products` SET name = ?, price = ?, details = ? WHERE id = ?");
    $update_product->execute([$name, $price, $details, $pid]);
 
-   $message[] = 'product updated successfully!';
+   $message = 'product updated successfully!';
 
    $old_image_01 = $_POST['old_image_01'];
    $image_01 = $_FILES['image_01']['name'];
@@ -34,13 +34,13 @@ if(isset($_POST['update'])){
 
    if(!empty($image_01)){
       if($image_size_01 > 2000000){
-         $message[] = 'image size is too large!';
+         $message = 'image size is too large!';
       }else{
          $update_image_01 = $conn->prepare("UPDATE `products` SET image_01 = ? WHERE id = ?");
          $update_image_01->execute([$image_01, $pid]);
          move_uploaded_file($image_tmp_name_01, $image_folder_01);
          unlink('../uploaded_img/'.$old_image_01);
-         $message[] = 'image 01 updated successfully!';
+         $message = 'image 01 updated successfully!';
       }
    }
 
@@ -53,13 +53,13 @@ if(isset($_POST['update'])){
 
    if(!empty($image_02)){
       if($image_size_02 > 2000000){
-         $message[] = 'image size is too large!';
+         $message = 'image size is too large!';
       }else{
          $update_image_02 = $conn->prepare("UPDATE `products` SET image_02 = ? WHERE id = ?");
          $update_image_02->execute([$image_02, $pid]);
          move_uploaded_file($image_tmp_name_02, $image_folder_02);
          unlink('../uploaded_img/'.$old_image_02);
-         $message[] = 'image 02 updated successfully!';
+         $message = 'image 02 updated successfully!';
       }
    }
 
@@ -72,13 +72,13 @@ if(isset($_POST['update'])){
 
    if(!empty($image_03)){
       if($image_size_03 > 2000000){
-         $message[] = 'image size is too large!';
+         $message = 'image size is too large!';
       }else{
          $update_image_03 = $conn->prepare("UPDATE `products` SET image_03 = ? WHERE id = ?");
          $update_image_03->execute([$image_03, $pid]);
          move_uploaded_file($image_tmp_name_03, $image_folder_03);
          unlink('../uploaded_img/'.$old_image_03);
-         $message[] = 'image 03 updated successfully!';
+         $message = 'image 03 updated successfully!';
       }
    }
 

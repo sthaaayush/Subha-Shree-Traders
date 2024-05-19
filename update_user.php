@@ -30,18 +30,18 @@ if(isset($_POST['submit'])){
    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
 
    if($old_pass == $empty_pass){
-      $message[] = 'please enter old password!';
+      $message = 'please enter old password!';
    }elseif($old_pass != $prev_pass){
-      $message[] = 'old password not matched!';
+      $message = 'old password not matched!';
    }elseif($new_pass != $cpass){
-      $message[] = 'confirm password not matched!';
+      $message = 'confirm password not matched!';
    }else{
       if($new_pass != $empty_pass){
          $update_admin_pass = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
          $update_admin_pass->execute([$cpass, $user_id]);
-         $message[] = 'password updated successfully!';
+         $message = 'password updated successfully!';
       }else{
-         $message[] = 'please enter a new password!';
+         $message = 'please enter a new password!';
       }
    }
    

@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
       $_SESSION['admin_id'] = $row['id'];
       header('location:dashboard.php');
    } else {
-      $message[] = 'incorrect username or password!';
+      $message = 'incorrect username or password!';
    }
 
 }
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
 
    <?php
    if (isset($message)) {
-      foreach ($message as $message) {
+      
          echo '
          <div class="message">
             <span>' . $message . '</span>
@@ -54,7 +54,6 @@ if (isset($_POST['submit'])) {
          </div>
          ';
       }
-   }
    ?>
 
    <section class="form-container">

@@ -127,7 +127,7 @@ section{
    z-index: 1100;
    border-radius: .5rem;
    box-shadow: var(--box-shadow);
-   animation: fadeOut 4s forwards;
+   animation: fadeOut 1.8s forwards;
 }
 
 .message span {

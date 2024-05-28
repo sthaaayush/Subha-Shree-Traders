@@ -31,19 +31,45 @@ function calculateAverageRating($reviews)
    return round($total / $totalRatings, 1);
 }
 
+// Function to check if the user has already submitted a review for the product
+function hasUserReviewed($conn, $user_id, $pid)
+{
+   $select_review = $conn->prepare("SELECT * FROM `reviews` WHERE user_id = ? AND product_id = ?");
+   $select_review->execute([$user_id, $pid]);
+   return $select_review->fetch(PDO::FETCH_ASSOC);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    if (isset($_POST['submit_review'])) {
       $pid = $_POST['pid'];
       $rating = $_POST['rating'];
       $comment = $_POST['comment'];
 
-      // Insert review into database
-      $insert_review = $conn->prepare("INSERT INTO `reviews` (user_id, product_id, rating, comment) VALUES (?, ?, ?, ?)");
-      $insert_review->execute([$user_id, $pid, $rating, $comment]);
-   } elseif (isset($_POST['add_to_cart'])) {
-      // Handle adding to cart
-   } elseif (isset($_POST['add_to_wishlist'])) {
-      // Handle adding to wishlist
+      // Check if the user has already reviewed the product
+      $existing_review = hasUserReviewed($conn, $user_id, $pid);
+
+      if (!$existing_review) {
+         // Insert review into database
+         $insert_review = $conn->prepare("INSERT INTO `reviews` (user_id, product_id, rating, comment) VALUES (?, ?, ?, ?)");
+         $insert_review->execute([$user_id, $pid, $rating, $comment]);
+         $message="Review Submitted succesfully";
+      }
+   } elseif (isset($_POST['update_review'])) {
+      $pid = $_POST['pid'];
+      $rating = $_POST['rating'];
+      $comment = $_POST['comment'];
+
+      // Update the user's review in the database
+      $update_review = $conn->prepare("UPDATE `reviews` SET rating = ?, comment = ? WHERE user_id = ? AND product_id = ?");
+      $update_review->execute([$rating, $comment, $user_id, $pid]);
+      $message="Review Updated succesfully";
+   } elseif (isset($_POST['delete_review'])) {
+      $pid = $_POST['pid'];
+
+      // Delete the user's review from the database
+      $delete_review = $conn->prepare("DELETE FROM `reviews` WHERE user_id = ? AND product_id = ?");
+      $delete_review->execute([$user_id, $pid]);
+      $message="Review Deleted succesfully";
    }
 }
 ?>
@@ -133,67 +159,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </div>
                </div>
             </form>
-            <!-- Form to add review -->
-            <form action="" method="post" class="box">
+
+            <!-- Form to add or update review -->
+            <?php
+            // Check if the user has already reviewed the product
+            $existing_review = hasUserReviewed($conn, $user_id, $pid);
+            ?>
+            <form action="" method="post" class="box" <?php if ($existing_review)
+               echo 'disabled'; ?>>
                <input type="hidden" name="pid" value="<?= $pid; ?>">
                <div class="row">
                   <div class="content">
-                     <div class="name">Add Your Review</div>
+                     <div class="name"><?= $existing_review ? 'Update Your Review' : 'Add Your Review'; ?></div>
                      <div class="flex">
                         <div class="rating">
                            <label for="rating" class="ratingSub">Your Rating:</label>
                            <!-- Stars for rating -->
                            <div class="stars">
-                              <input type="radio" id="star5" name="rating" value="5" required><label for="star5"><i
-                                    class="fas fa-star"></i></label>
-                              <input type="radio" id="star4" name="rating" value="4"><label for="star4"><i
-                                    class="fas fa-star"></i></label>
-                              <input type="radio" id="star3" name="rating" value="3"><label for="star3"><i
-                                    class="fas fa-star"></i></label>
-                              <input type="radio" id="star2" name="rating" value="2"><label for="star2"><i
-                                    class="fas fa-star"></i></label>
-                              <input type="radio" id="star1" name="rating" value="1"><label for="star1"><i
-                                    class="fas fa-star"></i></label>
+                              <?php
+                              // Initialize rating value
+                              $ratingValue = 0;
+                              if ($existing_review) {
+                                 $ratingValue = $existing_review['rating'];
+                              }
+                              // Render stars
+                              for ($i = 5; $i >= 1; $i--) {
+                                 echo '<input type="radio" id="star' . $i . '" name="rating" value="' . $i . '"';
+                                 if ($i === $ratingValue) {
+                                    echo ' checked';
+                                 }
+                                 if ($i === 1) {
+                                    echo ' checked';
+                                 }
+                                 echo '><label for="star' . $i . '"><i class="fas fa-star"></i></label>';
+                              }
+                              ?>
                            </div>
                         </div>
-                        <textarea name="comment" placeholder="Write your review here" required></textarea>
+                        <textarea name="comment" placeholder="Write your review here"
+                           required><?= $existing_review ? $existing_review['comment'] : ''; ?></textarea>
                      </div>
-                     <input type="submit" value="Submit Review" class="btn" name="submit_review">
+                     <?php if ($existing_review): ?>
+                        <input type="submit" value="Update Review" class="btn" name="update_review">
+                        <input type="submit" value="Delete Review" class="btn" name="delete_review">
+                     <?php else: ?>
+                        <input type="submit" value="Submit Review" class="btn" name="submit_review">
+                     <?php endif; ?>
                   </div>
                </div>
             </form>
-
-
             <!-- Display existing reviews -->
             <div class="reviews-section">
-               <?php
-               $reviews = getProductReviews($conn, $pid);
-               ?>
-               <h2>Product Reviews</h2>
-               <div class="reviews">
-                  <?php foreach ($reviews as $review): ?>
-                     <div class="review">
-                        <div class="user"><?= $review['username'] ?></div> <!-- Displaying username -->
-                        <div class="rating">Rating:
-                           <?php
-                           for ($i = 1; $i <= 5; $i++) {
-                              if ($i <= $review['rating']) {
-                                 echo '<i class="fas fa-star"></i>'; // Full star
-                              } else {
-                                 echo '<i class="far fa-star"></i>'; // Empty star
+               <?php if (!empty($reviews)): ?>
+                  <h2>Product Reviews</h2>
+                  <div class="reviews">
+                     <?php foreach ($reviews as $review): ?>
+                        <div class="review">
+                           <div class="user"><?= $review['username'] ?></div> <!-- Displaying username -->
+                           <div class="rating">Rating:
+                              <?php
+                              for ($i = 1; $i <= 5; $i++) {
+                                 if ($i <= $review['rating']) {
+                                    echo '<i class="fas fa-star"></i>'; // Full star
+                                 } else {
+                                    echo '<i class="far fa-star"></i>'; // Empty star
+                                 }
                               }
-                           }
-                           ?>
+                              ?>
+                           </div>
+                           <div class="comment"><?= $review['comment'] ?></div>
                         </div>
-                        <div class="comment"><?= $review['comment'] ?></div>
-                     </div>
-                  <?php endforeach; ?>
-               </div>
+                     <?php endforeach; ?>
+                  </div>
+               <?php else: ?>
+                  <p class="empty">No reviews yet. Be the first to review this product!</p>
+               <?php endif; ?>
             </div>
             <?php
          }
       } else {
-         echo '<p class="empty">no products added yet!</p>';
+         echo '<p class="empty">No Products Added Yet!</p>';
       }
       ?>
 

@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
 /* Color Variables */
 :root{
-   --main-color: #3A7CA5; /* Muted blue */
-   --accent-color: #88BDBC; /* Muted green */
-   --red: #D7263D;
-   --black: #2E2E2E;
+   --main-color: #5A9; /* Soft cyan */
+   --accent-color: #8AC; /* Light blue */
+   --red: #E57373;
+   --black: #333;
    --white: #FFFFFF;
-   --light-color: #595959;
-   --light-bg: #F7F7F7;
+   --light-color: #666;
+   --light-bg: #F5F5F5;
    --border: .2rem solid var(--black);
    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
 }
 
 /* Global Styles */
 *{
-   font-family: 'Nunito', sans-serif;
+   font-family: 'Open Sans', sans-serif;
    margin: 0; padding: 0;
    box-sizing: border-box;
    outline: none; border: none;
@@ -41,7 +41,7 @@
 }
 
 html{
-   font-size: 50%;
+   font-size: 62.5%; /* Adjusted for better rem calculation */
    overflow-x: hidden;
 }
 
@@ -64,7 +64,7 @@ section{
 
 /* Heading Styles */
 .heading{
-   font-size: 4rem;
+   font-size: 3.6rem;
    color: var(--black);
    margin-bottom: 2rem;
    text-align: center;
@@ -79,8 +79,8 @@ section{
    width: 100%;
    margin-top: 1rem;
    border-radius: .5rem;
-   padding: 1rem 3rem;
-   font-size: 1.7rem;
+   padding: 1.2rem 3rem;
+   font-size: 1.6rem;
    text-transform: capitalize;
    color: var(--white);
    cursor: pointer;
@@ -111,34 +111,52 @@ section{
    gap: 1rem;
 }
 
-/* Message Styles */
-.message{
-   position: sticky;
-   top: 0;
-   max-width: 1200px;
-   margin: 0 auto;
-   background-color: var(--light-bg);
+/* Notification Message Styles */
+.message {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   max-width: 90%;
+   background-color: greenyellow;
    padding: 2rem;
    display: flex;
    align-items: center;
    justify-content: space-between;
    gap: 1.5rem;
    z-index: 1100;
+   border-radius: .5rem;
+   box-shadow: var(--box-shadow);
+   animation: fadeOut 4s forwards;
 }
 
-.message span{
+.message span {
    font-size: 2rem;
-   color: var(--black);
+   color: var(--dark-grey);
 }
 
-.message i{
+.message i {
    cursor: pointer;
-   color: var(--red);
+   color: #555; /* Darker grey */
    font-size: 2.5rem;
 }
 
-.message i:hover{
-   color: var(--black);
+.message i:hover {
+   color: var(--dark-grey);
+}
+
+@keyframes fadeOut {
+   0% {
+      opacity: 3;
+   }
+
+   50%{
+      opacity: 2.5;
+   }
+
+   100% {
+      opacity: 0;
+   }
 }
 
 .empty{
@@ -182,11 +200,11 @@ section{
    text-transform: uppercase;
    color: var(--black);
    margin-bottom: 1rem;
-   font-size: 2.5rem;
+   font-size: 2.4rem;
 }
 
 .form-container form p{
-   font-size: 1.8rem;
+   font-size: 1.6rem;
    color: var(--light-color);
    margin-bottom: 1rem;
    border-radius: .5rem;
@@ -202,7 +220,7 @@ section{
    border-radius: .5rem;
    background-color: var(--light-bg);
    padding: 1.4rem;
-   font-size: 1.8rem;
+   font-size: 1.6rem;
    color: var(--black);
 }
 
@@ -223,7 +241,7 @@ section{
 }
 
 .header .flex .logo{
-   font-size: 2.5rem;
+   font-size: 2.4rem;
    color: var(--black);
 }
 
@@ -233,7 +251,7 @@ section{
 
 .header .flex .navbar a{
    margin: 0 1rem;
-   font-size: 2rem;
+   font-size: 1.8rem;
    color: var(--black);
 }
 
@@ -244,7 +262,7 @@ section{
 
 .header .flex .icons div{
    margin-left: 1.7rem;
-   font-size: 2.5rem;
+   font-size: 2.4rem;
    cursor: pointer;
    color: var(--black);
 }
@@ -301,7 +319,7 @@ section{
 }
 
 .dashboard .box-container .box h3{
-   font-size: 2.7rem;
+   font-size: 2.4rem;
    color: var(--black);
 }
 
@@ -313,7 +331,7 @@ section{
    padding: 1.3rem;
    border-radius: .5rem;
    background-color: var(--light-bg);
-   font-size: 1.7rem;
+   font-size: 1.6rem;
    color: var(--light-color);
    margin: 1rem 0;
 }
@@ -340,12 +358,12 @@ section{
 } 
 
 .add-products form span{
-   font-size: 1.7rem;
+   font-size: 1.6rem;
    color: var(--light-color);
 }
 
 .add-products form .box{
-   font-size: 1.8rem;
+   font-size: 1.6rem;
    background-color: var(--light-bg);
    border-radius: .5rem;
    padding: 1.4rem;
@@ -450,14 +468,14 @@ section{
    width: 100%;
    border-radius: .5rem;
    padding: 1.4rem;
-   font-size: 1.8rem;
+   font-size: 1.6rem;
    color: var(--black);
    background-color: var(--light-bg);
    margin: 1rem 0;
 }
 
 .update-product form span{
-   font-size: 1.7rem;
+   font-size: 1.6rem;
    color: var(--light-color);
 }
 
@@ -486,7 +504,7 @@ section{
 
 .orders .box-container .box p{
    line-height: 1.5;
-   font-size: 2rem;
+   font-size: 1.8rem;
    color: var(--light-color);
    margin: 1rem 0;
 }
@@ -500,7 +518,7 @@ section{
    width: 100%;
    background-color: var(--light-bg);
    padding: 1rem;
-   font-size: 1.8rem;
+   font-size: 1.6rem;
    color: var(--black);
    border-radius: .5rem;
    border: var(--border);
@@ -526,8 +544,8 @@ section{
 }
 
 .accounts .box-container .box p{
-   font-size: 2rem;
-   color: var(--light-color);
+   font-size: 1.8rem;
+   color: var (--light-color);
    margin: 1rem 0;
 }
 
@@ -555,7 +573,7 @@ section{
 
 .contacts .box-container .box p{
    line-height: 1.5;
-   font-size: 2rem;
+   font-size: 1.8rem;
    color: var(--light-color);
    margin: 1rem 0;
 }
@@ -567,7 +585,7 @@ section{
 /* Media Queries */
 @media (max-width: 991px){
    html{
-      font-size: 55%;
+      font-size: 57.5%;
    }
 }
 
@@ -602,7 +620,7 @@ section{
    }
 
    .heading{
-      font-size: 3.5rem;
+      font-size: 3.2rem;
    }
 
    .flex-btn{

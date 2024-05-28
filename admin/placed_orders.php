@@ -7,7 +7,7 @@ session_start();
 $admin_id = $_SESSION['admin_id'];
 
 if(!isset($admin_id)){
-   header('location:admin_login.php');
+   header('location:../user_login.php');
 }
 
 if(isset($_POST['update_payment'])){
@@ -16,7 +16,7 @@ if(isset($_POST['update_payment'])){
    $payment_status = filter_var($payment_status, FILTER_SANITIZE_STRING);
    $update_payment = $conn->prepare("UPDATE `orders` SET payment_status = ? WHERE id = ?");
    $update_payment->execute([$payment_status, $order_id]);
-   $message[] = 'payment status updated!';
+   $message = 'payment status updated!';
 }
 
 if(isset($_GET['delete'])){

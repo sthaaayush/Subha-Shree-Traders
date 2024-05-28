@@ -1,13 +1,12 @@
 <?php
    if(isset($message)){
-      foreach($message as $message){
          echo '
          <div class="message">
             <span>'.$message.'</span>
             <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
          </div>
          ';
-      }
+      
    }
 ?>
 
@@ -42,7 +41,7 @@
          <a href="../admin/update_profile.php" class="btn">Update Profile</a>
          <div class="flex-btn">
             <a href="../admin/register_admin.php" class="option-btn">Register</a>
-            <a href="../admin/admin_login.php" class="option-btn">Login</a>
+            <a href="../admin/../user_login.php" class="option-btn">Login</a>
          </div>
          <a href="../components/admin_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a> 
       </div>

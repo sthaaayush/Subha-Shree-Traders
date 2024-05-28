@@ -7,7 +7,7 @@ session_start();
 $admin_id = $_SESSION['admin_id'];
 
 if(!isset($admin_id)){
-   header('location:admin_login.php');
+   header('location:../user_login.php');
 }
 
 if(isset($_POST['submit'])){
@@ -23,14 +23,14 @@ if(isset($_POST['submit'])){
    $select_admin->execute([$name]);
 
    if($select_admin->rowCount() > 0){
-      $message[] = 'username already exist!';
+      $message = 'username already exist!';
    }else{
       if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
+         $message = 'confirm password not matched!';
       }else{
          $insert_admin = $conn->prepare("INSERT INTO `admins`(name, password) VALUES(?,?)");
          $insert_admin->execute([$name, $cpass]);
-         $message[] = 'new admin registered successfully!';
+         $message = 'new admin registered successfully!';
       }
    }
 

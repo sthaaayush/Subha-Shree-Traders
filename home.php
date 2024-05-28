@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id'])) {
 } else {
    $user_id = '';
 }
-;
+
 
 include 'components/wishlist_cart.php';
 
@@ -125,7 +125,7 @@ include 'components/wishlist_cart.php';
          <div class="swiper-wrapper">
 
             <?php
-            $select_products = $conn->prepare("SELECT * FROM `products` LIMIT 6");
+            $select_products = $conn->prepare("SELECT * FROM `products` WHERE `quantity` > 0 LIMIT 6");
             $select_products->execute();
             if ($select_products->rowCount() > 0) {
                while ($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)) {

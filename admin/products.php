@@ -7,9 +7,8 @@ session_start();
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
-   header('location:admin_login.php');
+   header('location:../user_login.php');
 }
-;
 
 if (isset($_POST['add_product'])) {
 
@@ -46,7 +45,7 @@ if (isset($_POST['add_product'])) {
    $select_products->execute([$name]);
 
    if ($select_products->rowCount() > 0) {
-      $message[] = 'product name already exist!';
+      $message = 'product name already exist!';
    } else {
 
       $insert_products = $conn->prepare("INSERT INTO `products`(name, details, price, image_01, image_02, image_03, category_id, quantity) VALUES(?,?,?,?,?,?,?,?)");
@@ -54,12 +53,12 @@ if (isset($_POST['add_product'])) {
 
       if ($insert_products) {
          if ($image_size_01 > 2000000 or $image_size_02 > 2000000 or $image_size_03 > 2000000) {
-            $message[] = 'image size is too large!';
+            $message = 'image size is too large!';
          } else {
             move_uploaded_file($image_tmp_name_01, $image_folder_01);
             move_uploaded_file($image_tmp_name_02, $image_folder_02);
             move_uploaded_file($image_tmp_name_03, $image_folder_03);
-            $message[] = 'new product added!';
+            $message = 'new product added!';
          }
       }
    }
@@ -165,7 +164,7 @@ $select_categories->execute();
 
    <section class="show-products">
 
-      <h1 class="heading">Products Added.</h1>
+      <h1 class="heading">Products Added</h1>
 
       <div class="box-container">
 
@@ -174,12 +173,16 @@ $select_categories->execute();
          $select_products->execute();
          if ($select_products->rowCount() > 0) {
             while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
+               $is_out_of_stock = $fetch_products['quantity'] == 0;
                ?>
-               <div class="box">
+               <div class="box <?= $is_out_of_stock ? 'out-of-stock' : '' ?>">
                   <img src="../uploaded_img/<?= $fetch_products['image_01']; ?>" alt="">
                   <div class="name"><?= $fetch_products['name']; ?></div>
                   <div class="price">Nrs.<span><?= $fetch_products['price']; ?></span>/-</div>
                   <div class="quantity">Quantity: <span><?= $fetch_products['quantity']; ?></span></div>
+                  <?php if ($is_out_of_stock): ?>
+                     <div class="out-of-stock-message">Out of Stock</div>
+                  <?php endif; ?>
                   <div class="details"><span><?= $fetch_products['details']; ?></span></div>
                   <div class="flex-btn">
                      <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
@@ -203,3 +206,15 @@ $select_categories->execute();
 </body>
 
 </html>
+
+<style>
+   .out-of-stock {
+      border: 2px solid red;
+   }
+
+   .out-of-stock-message {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+   }
+</style>

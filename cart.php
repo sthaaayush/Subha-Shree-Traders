@@ -15,12 +15,14 @@ if(isset($_POST['delete'])){
    $cart_id = $_POST['cart_id'];
    $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE id = ?");
    $delete_cart_item->execute([$cart_id]);
+   $message = 'Cart Deleted';
 }
 
 if(isset($_GET['delete_all'])){
    $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
    $delete_cart_item->execute([$user_id]);
    header('location:cart.php');
+   $message = 'Cart Emptied';
 }
 
 if(isset($_POST['update_qty'])){
@@ -29,7 +31,7 @@ if(isset($_POST['update_qty'])){
    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
    $update_qty = $conn->prepare("UPDATE `cart` SET quantity = ? WHERE id = ?");
    $update_qty->execute([$qty, $cart_id]);
-   $message[] = 'cart quantity updated';
+   $message = 'Cart Quantity Updated';
 }
 
 ?>
@@ -63,7 +65,7 @@ if(isset($_POST['update_qty'])){
 
    <?php
       $grand_total = 0;
-      $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+      $select_cart = $conn->prepare("SELECT c.*, p.quantity AS available_qty FROM `cart` c JOIN `products` p ON c.pid = p.id WHERE c.user_id = ?");
       $select_cart->execute([$user_id]);
       if($select_cart->rowCount() > 0){
          while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
@@ -75,7 +77,8 @@ if(isset($_POST['update_qty'])){
       <div class="name"><?= $fetch_cart['name']; ?></div>
       <div class="flex">
          <div class="price">Nrs.<?= $fetch_cart['price']; ?>/-</div>
-         <input type="number" name="qty" class="qty" min="1" max="<?= $fetch_product['quantity']; ?>" onkeypress="if(this.value.length == 2) return false;" value="<?= $fetch_cart['quantity']; ?>">
+         <!-- Adjusted input field for quantity -->
+         <input type="number" name="qty" class="qty" min="1" max="<?= $fetch_cart['available_qty']; ?>" onkeypress="if(this.value.length == 2) return false;" value="<?= $fetch_cart['quantity']; ?>">
          <button type="submit" class="fas fa-edit" name="update_qty"></button>
       </div>
       <div class="sub-total"> Sub Total : <span>Nrs.<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span> </div>

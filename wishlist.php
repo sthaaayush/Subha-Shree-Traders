@@ -93,18 +93,6 @@ if(isset($_GET['delete_all'])){
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <?php include 'components/footer.php'; ?>
 
 <script src="js/script.js"></script>

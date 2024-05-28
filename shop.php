@@ -41,7 +41,7 @@ include 'components/wishlist_cart.php';
    <div class="box-container">
 
    <?php
-     $select_products = $conn->prepare("SELECT * FROM `products`"); 
+     $select_products = $conn->prepare("SELECT * FROM `products` WHERE `quantity` > 0"); 
      $select_products->execute();
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
@@ -71,18 +71,6 @@ include 'components/wishlist_cart.php';
    </div>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 

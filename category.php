@@ -43,7 +43,7 @@ include 'components/wishlist_cart.php';
          <?php
          if (isset($_GET['category'])) {
             $category_id = $_GET['category'];
-            $select_products = $conn->prepare("SELECT * FROM `products` WHERE category_id = ?");
+            $select_products = $conn->prepare("SELECT * FROM `products` WHERE category_id = ? AND `quantity` > 0 ");
             $select_products->execute([$category_id]);
             if ($select_products->rowCount() > 0) {
                while ($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)) {

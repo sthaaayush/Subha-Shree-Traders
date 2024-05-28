@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <?php
       $pid = $_GET['pid'];
-      $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
+      $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = ? AND `quantity` > 0");
       $select_products->execute([$pid]);
       if ($select_products->rowCount() > 0) {
          while ($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)) {

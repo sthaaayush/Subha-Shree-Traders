@@ -73,19 +73,7 @@ if(isset($_POST['submit'])){
       <a href="user_login.php" class="option-btn">Login Now.</a>
    </form>
 
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
+</section
 
 <?php include 'components/footer.php'; ?>
 

@@ -3,7 +3,7 @@ if (isset($message)) {
    
       echo '
          <div class="message">
-            <span>' . $message . '</span>
+            <span>' . ucfirst($message) . '</span>
             <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
          </div>
          ';

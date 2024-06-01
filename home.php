@@ -49,33 +49,10 @@ include 'components/wishlist_cart.php';
 
                <div class="swiper-slide slide">
                   <div class="image">
-                     <img src="images/home-img-1.png" alt="">
+                     <img src="images/logo1.png" alt="">
                   </div>
                   <div class="content">
-                     <span>Upto 50% Off</span>
-                     <h3>Latest Smartphones</h3>
-                     <a href="category.php?category=smartphone" class="btn">Shop Now</a>
-                  </div>
-               </div>
-
-               <div class="swiper-slide slide">
-                  <div class="image">
-                     <img src="images/home-img-2.png" alt="">
-                  </div>
-                  <div class="content">
-                     <span>Upto 50% off</span>
-                     <h3>Latest Watches</h3>
-                     <a href="category.php?category=watch" class="btn">Shop Now</a>
-                  </div>
-               </div>
-
-               <div class="swiper-slide slide">
-                  <div class="image">
-                     <img src="images/home-img-3.png" alt="">
-                  </div>
-                  <div class="content">
-                     <span>upto 50% off</span>
-                     <h3>Latest headsets</h3>
+                     <h3>Subah Shree Traders</h3>
                      <a href="shop.php" class="btn">Shop Now</a>
                   </div>
                </div>

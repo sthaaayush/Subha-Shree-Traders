@@ -67,7 +67,7 @@ if (isset($_POST['update_category'])) {
 
     <section class="add-products">
 
-        <h1 class="heading">Add Category</h1>
+        <h1 class="heading">Category</h1>
 
         <form action="category.php" method="post" enctype="multipart/form-data">
             <div class="flex">
@@ -141,7 +141,7 @@ if (isset($_POST['update_category'])) {
 
     </section>
 
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 
     <script>
         // Function to open update form with category id and current name

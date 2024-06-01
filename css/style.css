@@ -254,9 +254,9 @@
    }
 
    .home-bg{
-      background:url(../images/home-bg.png) no-repeat;
-      background-size: cover;
-      background-position: center;
+      background:url(../images/home-bg.avif) no-repeat;
+      background-size: contain   ;
+      background-position: right;
    }
 
    .home-bg .home .slide{
@@ -324,7 +324,7 @@
    .home-bg .home .slide .content h3{
       margin-top: 1rem;
       font-size: 4rem;
-      color:var(--white);
+      color:var(--black);
       text-transform: uppercase;
    }
 
@@ -1185,6 +1185,15 @@
    }
 
    @media (max-width:450px){
+      .home-bg{
+         background:url(../images/home-bg.avif) no-repeat;
+         background-size: cover   ;
+         background-position: left;
+      }
+      
+      .home-bg .home .slide .image img{
+         height: 20em;
+      }
 
       html{
          font-size: 50%;

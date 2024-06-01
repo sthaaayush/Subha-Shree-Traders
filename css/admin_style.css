@@ -2,9 +2,9 @@
 
 /* Color Variables */
 :root{
-   --main-color: #5A9; /* Soft cyan */
-   --accent-color: #8AC; /* Light blue */
-   --red: #E57373;
+   --main-color: rgb(85, 86, 170); /* Soft cyan */
+   --accent-color: rgb(131, 75, 194); /* Light blue */
+   --red: #eca950;
    --black: #333;
    --white: #FFFFFF;
    --light-color: #666;
@@ -485,6 +485,102 @@ section{
 }
 
 /* Orders */
+
+/* Table Styles */
+.table-container {
+   width: 100%;
+   overflow-x: auto;
+   font-size: medium;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+   margin: 1rem 0;
+}
+
+table thead {
+   background-color: var(--main-color);
+   color: var(--white);
+}
+
+table th,
+table td {
+   width: max-content;
+   padding: 1rem;
+   text-align: left;
+   border: var(--border);
+}
+
+table th {
+   text-transform: uppercase;
+}
+
+table tbody tr:nth-child(even) {
+   background-color: var(--light-bg);
+}
+
+table tbody tr:nth-child(odd) {
+   background-color: lightgray;
+}
+
+.empty {
+   text-align: center;
+   font-size: 1.8rem;
+   color: var(--light-color);
+   padding: 1rem;
+}
+
+.flex-btn {
+   display: flex;
+   gap: 1rem;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.option-btn,
+.delete-btn {
+   padding: 0.5rem 1rem;
+   font-size: 1.2rem;
+   cursor: pointer;
+}
+
+.option-btn {
+   background-color: var(--accent-color);
+   color: var(--white);
+   border: none;
+   border-radius: 0.5rem;
+}
+
+.option-btn:hover {
+   background-color: var(--black);
+}
+
+.delete-btn {
+   background-color: var(--red);
+   color: var(--white);
+   border: none;
+   border-radius: 0.5rem;
+}
+
+.delete-btn:hover {
+   background-color: var(--black);
+}
+
+.select {
+   width: 100%;
+   padding: 0.5rem;
+   font-size: 1.2rem;
+   border: var(--border);
+   border-radius: 0.5rem;
+   background-color: var(--light-bg);
+   color: var(--black);
+}
+
+.highlight-message{
+   background-color: lightgreen;
+}
+
 .orders .box-container{
    display: grid;
    grid-template-columns: repeat(auto-fit, 33rem);

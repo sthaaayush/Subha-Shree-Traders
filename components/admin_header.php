@@ -2,7 +2,7 @@
    if(isset($message)){
          echo '
          <div class="message">
-            <span>'.$message.'</span>
+            <span>'.ucfirst($message).'</span>
             <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
          </div>
          ';
@@ -24,6 +24,7 @@
          <a href="../admin/admin_accounts.php">Admins</a>
          <a href="../admin/users_accounts.php">Users</a>
          <a href="../admin/messages.php">Messages</a>
+         <a href="../admin/sales_report.php">Report</a>
       </nav>
 
       <div class="icons">
@@ -38,12 +39,10 @@
             $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
          ?>
          <p><?= $fetch_profile['name']; ?></p>
-         <a href="../admin/update_profile.php" class="btn">Update Profile</a>
          <div class="flex-btn">
-            <a href="../admin/register_admin.php" class="option-btn">Register</a>
-            <a href="../admin/../user_login.php" class="option-btn">Login</a>
+            <a href="../admin/update_profile.php" class="option-btn">Update Profile</a>
+            <a href="../components/admin_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a> 
          </div>
-         <a href="../components/admin_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a> 
       </div>
 
    </section>

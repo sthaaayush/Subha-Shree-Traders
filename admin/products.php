@@ -105,100 +105,100 @@ $select_categories->execute();
 <body>
 
    <?php include '../components/admin_header.php'; ?>
+   <section class="product-management">
+      <section class="add-products">
 
-   <section class="add-products">
+         <h1 class="heading">Add Product</h1>
 
-      <h1 class="heading">Add Product</h1>
-
-      <form action="" method="post" enctype="multipart/form-data">
-         <div class="flex">
-            <div class="inputBox">
-               <span>Product Name </span>
-               <input type="text" class="box" required maxlength="100" placeholder="enter product name" name="name">
-            </div>
-            <div class="inputBox">
-               <span>Product Price </span>
-               <input type="number" min="0" class="box" required max="9999999999" placeholder="enter product price"
-                  onkeypress="if(this.value.length == 10) return false;" name="price">
-            </div>
-            <div class="inputBox">
-               <span>Category </span>
-               <select name="category_id" class="box" required>
-                  <option value="" disabled selected>Select Category</option>
-                  <?php
-                  while ($fetch_categories = $select_categories->fetch(PDO::FETCH_ASSOC)) {
-                     echo '<option value="' . $fetch_categories['id'] . '">' . $fetch_categories['name'] . '</option>';
-                  }
-                  ?>
-               </select>
-            </div>
-            <div class="inputBox">
-               <span>Quantity </span>
-               <input type="number" min="1" class="box" required placeholder="enter product quantity" name="quantity">
-            </div>
-            <div class="inputBox">
-               <span>Image 01 </span>
-               <input type="file" name="image_01" accept="image/jpg, image/jpeg, image/png, image/webp" class="box"
-                  required>
-            </div>
-            <div class="inputBox">
-               <span>Image 02 </span>
-               <input type="file" name="image_02" accept="image/jpg, image/jpeg, image/png, image/webp" class="box"
-                  >
-            </div>
-            <div class="inputBox">
-               <span>Image 03 </span>
-               <input type="file" name="image_03" accept="image/jpg, image/jpeg, image/png, image/webp" class="box"
-                  >
-            </div>
-            <div class="inputBox">
-               <span>Product description </span>
-               <textarea name="details" placeholder="enter product details" class="box" required maxlength="500"
-                  cols="30" rows="10"></textarea>
-            </div>
-         </div>
-         <input type="submit" value="add product" class="btn" name="add_product">
-      </form>
-
-   </section>
-
-   <section class="show-products">
-
-      <h1 class="heading">Products Added</h1>
-
-      <div class="box-container">
-
-         <?php
-         $select_products = $conn->prepare("SELECT * FROM `products`");
-         $select_products->execute();
-         if ($select_products->rowCount() > 0) {
-            while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
-               $is_out_of_stock = $fetch_products['quantity'] == 0;
-               ?>
-               <div class="box <?= $is_out_of_stock ? 'out-of-stock' : '' ?>">
-                  <img src="../uploaded_img/<?= $fetch_products['image_01']; ?>" alt="">
-                  <div class="name"><?= $fetch_products['name']; ?></div>
-                  <div class="price">Nrs.<span><?= $fetch_products['price']; ?></span>/-</div>
-                  <div class="quantity">Quantity: <span><?= $fetch_products['quantity']; ?></span></div>
-                  <?php if ($is_out_of_stock): ?>
-                     <div class="out-of-stock-message">Out of Stock</div>
-                  <?php endif; ?>
-                  <div class="details"><span><?= $fetch_products['details']; ?></span></div>
-                  <div class="flex-btn">
-                     <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
-                     <a href="products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn"
-                        onclick="return confirm('delete this product?');">delete</a>
-                  </div>
+         <form action="" method="post" enctype="multipart/form-data">
+            <div class="flex">
+               <div class="inputBox">
+                  <span>Product Name </span>
+                  <input type="text" class="box" required maxlength="100" placeholder="enter product name" name="name">
                </div>
-               <?php
+               <div class="inputBox">
+                  <span>Product Price </span>
+                  <input type="number" min="0" class="box" required max="9999999999" placeholder="enter product price"
+                     onkeypress="if(this.value.length == 10) return false;" name="price">
+               </div>
+               <div class="inputBox">
+                  <span>Category </span>
+                  <select name="category_id" class="box" required>
+                     <option value="" disabled selected>Select Category</option>
+                     <?php
+                     while ($fetch_categories = $select_categories->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . $fetch_categories['id'] . '">' . $fetch_categories['name'] . '</option>';
+                     }
+                     ?>
+                  </select>
+               </div>
+               <div class="inputBox">
+                  <span>Quantity </span>
+                  <input type="number" min="1" class="box" required placeholder="enter product quantity"
+                     name="quantity">
+               </div>
+               <div class="inputBox">
+                  <span>Image 01 </span>
+                  <input type="file" name="image_01" accept="image/jpg, image/jpeg, image/png, image/webp" class="box"
+                     required>
+               </div>
+               <div class="inputBox">
+                  <span>Image 02 </span>
+                  <input type="file" name="image_02" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
+               </div>
+               <div class="inputBox">
+                  <span>Image 03 </span>
+                  <input type="file" name="image_03" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
+               </div>
+               <div class="inputBox">
+                  <span>Product description </span>
+                  <textarea name="details" placeholder="enter product details" class="box" required maxlength="500"
+                     cols="30" rows="10"></textarea>
+               </div>
+            </div>
+            <input type="submit" value="add product" class="btn" name="add_product">
+         </form>
+
+      </section>
+
+      <section class="show-products">
+
+         <h1 class="heading">Products Added</h1>
+
+         <div class="box-container">
+
+            <?php
+            $select_products = $conn->prepare("SELECT * FROM `products`");
+            $select_products->execute();
+            if ($select_products->rowCount() > 0) {
+               while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
+                  $is_out_of_stock = $fetch_products['quantity'] == 0;
+                  ?>
+                  <div class="box <?= $is_out_of_stock ? 'out-of-stock' : '' ?>">
+                     <img src="../uploaded_img/<?= $fetch_products['image_01']; ?>" alt="">
+                     <div class="name"><?= $fetch_products['name']; ?></div>
+                     <div class="price">Nrs.<span><?= $fetch_products['price']; ?></span>/-</div>
+                     <div class="quantity">Quantity: <span><?= $fetch_products['quantity']; ?></span></div>
+                     <?php if ($is_out_of_stock): ?>
+                        <div class="out-of-stock-message">Out of Stock</div>
+                     <?php endif; ?>
+                     <div class="details"><span><?= $fetch_products['details']; ?></span></div>
+                     <div class="flex-btn">
+                        <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
+                        <a href="products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn"
+                           onclick="return confirm('delete this product?');">delete</a>
+                     </div>
+                  </div>
+                  <?php
+               }
+            } else {
+               echo '<p class="empty">no products added yet!</p>';
             }
-         } else {
-            echo '<p class="empty">no products added yet!</p>';
-         }
-         ?>
+            ?>
 
-      </div>
+         </div>
 
+      </section>
    </section>
 
    <script src="../js/admin_script.js"></script>

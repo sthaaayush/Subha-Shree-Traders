@@ -59,6 +59,10 @@ if (isset($_POST['order'])) {
    }
 }
 
+// Fetch user details from the database
+$select_user = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+$select_user->execute([$user_id]);
+$user_details = $select_user->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -117,15 +121,15 @@ if (isset($_POST['order'])) {
       <div class="flex">
          <div class="inputBox">
             <span>Your Name :</span>
-            <input type="text" name="name" placeholder="Enter your name" class="box" maxlength="20" required>
+            <input type="text" name="name" placeholder="Enter your name" class="box" maxlength="20" required value="<?= isset($user_details['name']) ? $user_details['name'] : ''; ?>">
          </div>
          <div class="inputBox">
             <span>Your Number :</span>
-            <input type="number" name="number" placeholder="Enter your number" class="box" min="0" maxlength="10" onkeypress="if(this.value.length == 10) return false;" required>
+            <input type="number" name="number" placeholder="Enter your number" class="box" min="9" maxlength="10" onkeypress="if(this.value.length == 10) return false;" required value="<?= isset($user_details['number']) ? (int)$user_details['number'] : 0; ?>">
          </div>
          <div class="inputBox">
             <span>Your Email :</span>
-            <input type="email" name="email" placeholder="Enter your email" class="box" maxlength="50" required>
+            <input type="email" name="email" placeholder="Enter your email" class="box" maxlength="50" required value="<?= isset($user_details['email']) ? $user_details['email'] : ''; ?>">
          </div>
          <div class="inputBox">
             <span>Payment Method :</span>
@@ -136,28 +140,12 @@ if (isset($_POST['order'])) {
             </select>
          </div>
          <div class="inputBox">
-            <span>Address Line 01 :</span>
-            <input type="text" name="flat" placeholder="e.g. Flat number" class="box" maxlength="50" required>
+            <span>Address :</span>
+            <input type="text" name="flat" placeholder="Address" class="box" maxlength="50" required value="<?= isset($user_details['address']) ? $user_details['address'] : 'a'; ?>">
          </div>
          <div class="inputBox">
-            <span>Address Line 02 :</span>
-            <input type="text" name="street" placeholder="Street name" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>City :</span>
-            <input type="text" name="city" placeholder="Kathmandu" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>Province :</span>
-            <input type="text" name="state" placeholder="Bagmati" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>Country :</span>
-            <input type="text" name="country" placeholder="Nepal" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>ZIP Code :</span>
-            <input type="number" min="0" name="pin_code" placeholder="e.g. 56400" onkeypress="if(this.value.length == 6) return false;" class="box" required>
+            <span>Landmark:</span>
+            <input type="text" name="street" placeholder="e.g. Flat number, Street , House number" class="box" maxlength="50" required>
          </div>
       </div>
 

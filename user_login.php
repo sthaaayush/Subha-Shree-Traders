@@ -78,6 +78,8 @@ if (isset($_POST['submit_admin'])) {
          <input type="password" name="pass" required placeholder="Enter your password" maxlength="20" class="box"
             oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="Login" class="btn" name="submit_user">
+         <p>Didn't have an account?</p>
+         <a href="user_register.php" class="option-btn">Register Now.</a>
       </form>
 
       <form action="" method="post" id="admin_login_form" style="display:none;">
@@ -100,6 +102,7 @@ if (isset($_POST['submit_admin'])) {
    </section>
 
    <?php include 'components/footer.php'; ?>
+   <script src="js/script.js"></script>
 
    <script>
       document.getElementById('user_toggle').addEventListener('click', function () {

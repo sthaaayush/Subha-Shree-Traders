@@ -1,51 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
 
 /* Color Variables */
-:root{
-   --main-color: rgb(85, 86, 170); /* Soft cyan */
-   --accent-color: rgb(131, 75, 194); /* Light blue */
+:root {
+   --main-color: rgb(85, 86, 170);
+   /* Soft cyan */
+   --accent-color: rgb(131, 75, 194);
+   /* Light blue */
    --red: #eca950;
    --black: #333;
-   --white: #FFFFFF;
+   --white: #ffffff;
    --light-color: #666;
-   --light-bg: #F5F5F5;
-   --border: .2rem solid var(--black);
-   --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+   --light-bg: #f5f5f5;
+   --border: 0.2rem solid var(--black);
+   --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 /* Global Styles */
-*{
-   font-family: 'Open Sans', sans-serif;
-   margin: 0; padding: 0;
+* {
+   font-family: "Open Sans", sans-serif;
+   margin: 0;
+   padding: 0;
    box-sizing: border-box;
-   outline: none; border: none;
+   outline: none;
+   border: none;
    text-decoration: none;
 }
 
-*::selection{
+*::selection {
    background-color: var(--main-color);
    color: var(--white);
 }
 
-::-webkit-scrollbar{
-   height: .5rem;
+::-webkit-scrollbar {
+   height: 0.5rem;
    width: 1rem;
 }
 
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
    background-color: transparent;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
    background-color: var(--main-color);
 }
 
-html{
-   font-size: 62.5%; /* Adjusted for better rem calculation */
+html {
+   font-size: 62.5%;
+   /* Adjusted for better rem calculation */
    overflow-x: hidden;
 }
 
-body{
+body {
    background-color: var(--light-bg);
    backdrop-filter: blur(5px);
    padding-bottom: 10rem;
@@ -56,14 +61,14 @@ body{
    height: 100vh;
 }
 
-section{
+section {
    padding: 2rem;
    max-width: 1200px;
    margin: 0 auto;
 }
 
 /* Heading Styles */
-.heading{
+.heading {
    font-size: 3.6rem;
    color: var(--black);
    margin-bottom: 2rem;
@@ -74,11 +79,11 @@ section{
 /* Button Styles */
 .btn,
 .delete-btn,
-.option-btn{
+.option-btn {
    display: block;
    width: 100%;
    margin-top: 1rem;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    padding: 1.2rem 3rem;
    font-size: 1.6rem;
    text-transform: capitalize;
@@ -87,26 +92,26 @@ section{
    text-align: center;
 }
 
-.btn{
+.btn {
    background-color: var(--main-color);
 }
 
-.option-btn{
+.option-btn {
    background-color: var(--accent-color);
 }
 
-.delete-btn{
+.delete-btn {
    background-color: var(--red);
 }
 
 .btn:hover,
 .delete-btn:hover,
-.option-btn:hover{
+.option-btn:hover {
    background-color: var(--black);
 }
 
 /* Flex Button Container */
-.flex-btn{
+.flex-btn {
    display: flex;
    gap: 1rem;
 }
@@ -125,7 +130,7 @@ section{
    justify-content: space-between;
    gap: 1.5rem;
    z-index: 1100;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    box-shadow: var(--box-shadow);
    animation: fadeOut 1.8s forwards;
 }
@@ -137,7 +142,8 @@ section{
 
 .message i {
    cursor: pointer;
-   color: #555; /* Darker grey */
+   color: #555;
+   /* Darker grey */
    font-size: 2.5rem;
 }
 
@@ -150,7 +156,7 @@ section{
       opacity: 3;
    }
 
-   50%{
+   50% {
       opacity: 2.5;
    }
 
@@ -159,65 +165,65 @@ section{
    }
 }
 
-.empty{
+.empty {
    padding: 1.5rem;
    background-color: var(--white);
    border: var(--border);
    box-shadow: var(--box-shadow);
    text-align: center;
    color: var(--red);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    font-size: 2rem;
    text-transform: capitalize;
 }
 
 /* Animation */
-@keyframes fadeIn{
-   0%{
+@keyframes fadeIn {
+   0% {
       transform: translateY(1rem);
    }
 }
 
 /* Form Container */
-.form-container{
+.form-container {
    min-height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
 }
 
-.form-container form{
+.form-container form {
    padding: 2rem;
    text-align: center;
    box-shadow: var(--box-shadow);
    background-color: var(--white);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    width: 50rem;
    border: var(--border);
 }
 
-.form-container form h3{
+.form-container form h3 {
    text-transform: uppercase;
    color: var(--black);
    margin-bottom: 1rem;
    font-size: 2.4rem;
 }
 
-.form-container form p{
+.form-container form p {
    font-size: 1.6rem;
    color: var(--light-color);
    margin-bottom: 1rem;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
 }
 
-.form-container form p span{
+.form-container form p span {
    color: var(--accent-color);
 }
 
-.form-container form .box{
+.form-container form .box {
    width: 100%;
    margin: 1rem 0;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    background-color: var(--light-bg);
    padding: 1.4rem;
    font-size: 1.6rem;
@@ -225,83 +231,86 @@ section{
 }
 
 /* Header Styles */
-.header{
+.header {
    position: sticky;
-   top: 0; left: 0; right: 0;
+   top: 0;
+   left: 0;
+   right: 0;
    background-color: var(--white);
    box-shadow: var(--box-shadow);
    z-index: 1000;
 }
 
-.header .flex{
+.header .flex {
    display: flex;
    align-items: center;
    justify-content: space-between;
    position: relative;
 }
 
-.header .flex .logo{
+.header .flex .logo {
    font-size: 2.4rem;
    color: var(--black);
 }
 
-.header .flex .logo span{
+.header .flex .logo span {
    color: var(--main-color);
 }
 
-.header .flex .navbar a{
+.header .flex .navbar a {
    margin: 0 1rem;
    font-size: 1.8rem;
    color: var(--black);
 }
 
-.header .flex .navbar a:hover{
+.header .flex .navbar a:hover {
    color: var(--main-color);
    text-decoration: underline;
 }
 
-.header .flex .icons div{
+.header .flex .icons div {
    margin-left: 1.7rem;
    font-size: 2.4rem;
    cursor: pointer;
    color: var(--black);
 }
 
-.header .flex .icons div:hover{
+.header .flex .icons div:hover {
    color: var(--main-color);
 }
 
-.header .flex .profile{
+.header .flex .profile {
    position: absolute;
-   top: 120%; right: 2rem;
+   top: 120%;
+   right: 2rem;
    background-color: var(--white);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    box-shadow: var(--box-shadow);
    border: var(--border);
    padding: 2rem;
    width: 30rem;
    padding-top: 1.2rem;
    display: none;
-   animation: fadeIn .2s linear;
+   animation: fadeIn 0.2s linear;
 }
 
-.header .flex .profile.active{
+.header .flex .profile.active {
    display: inline-block;
 }
 
-.header .flex .profile p{
+.header .flex .profile p {
    text-align: center;
    color: var(--black);
    font-size: 2rem;
    margin-bottom: 1rem;
 }
 
-#menu-btn{
+#menu-btn {
    display: none;
 }
 
 /* Dashboard Styles */
-.dashboard .box-container{
+.dashboard .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
    gap: 1.5rem;
@@ -309,27 +318,27 @@ section{
    align-items: flex-start;
 }
 
-.dashboard .box-container .box{
+.dashboard .box-container .box {
    padding: 2rem;
    text-align: center;
    border: var(--border);
    box-shadow: var(--box-shadow);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    background-color: var(--white);
 }
 
-.dashboard .box-container .box h3{
+.dashboard .box-container .box h3 {
    font-size: 2.4rem;
    color: var(--black);
 }
 
-.dashboard .box-container .box h3 span{
+.dashboard .box-container .box h3 span {
    font-size: 2rem;
 }
 
-.dashboard .box-container .box p{
+.dashboard .box-container .box p {
    padding: 1.3rem;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    background-color: var(--light-bg);
    font-size: 1.6rem;
    color: var(--light-color);
@@ -337,47 +346,47 @@ section{
 }
 
 /* Add Products Form */
-.add-products form{
+.add-products form {
    max-width: 70rem;
-   margin: 0 auto;   
+   margin: 0 auto;
    background-color: var(--white);
    box-shadow: var(--box-shadow);
    border: var(--border);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    padding: 2rem;
 }
 
-.add-products form .flex{
+.add-products form .flex {
    display: flex;
    gap: 1.5rem;
    flex-wrap: wrap;
 }
 
-.add-products form .flex .inputBox{
+.add-products form .flex .inputBox {
    flex: 1 1 25rem;
-} 
+}
 
-.add-products form span{
+.add-products form span {
    font-size: 1.6rem;
    color: var(--light-color);
 }
 
-.add-products form .box{
+.add-products form .box {
    font-size: 1.6rem;
    background-color: var(--light-bg);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    padding: 1.4rem;
    width: 100%;
    margin-top: 1.5rem;
 }
 
-.add-products form textarea{
+.add-products form textarea {
    height: 5.4rem;
    resize: none;
 }
 
 /* Show Products */
-.show-products .box-container{
+.show-products .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, 33rem);
    gap: 1.5rem;
@@ -385,88 +394,88 @@ section{
    align-items: flex-start;
 }
 
-.show-products .box-container .box{
+.show-products .box-container .box {
    background-color: var(--white);
    box-shadow: var(--box-shadow);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    border: var(--border);
    padding: 2rem;
 }
 
-.show-products .box-container .box img{
+.show-products .box-container .box img {
    height: 20rem;
    width: 100%;
    object-fit: contain;
    margin-bottom: 1rem;
 }
 
-.show-products .box-container .box .name{
+.show-products .box-container .box .name {
    font-size: 2rem;
    color: var(--black);
 }
 
-.show-products .box-container .box .quantity{
+.show-products .box-container .box .quantity {
    font-size: 2rem;
    color: var(--black);
 }
 
-.show-products .box-container .box .price{
+.show-products .box-container .box .price {
    font-size: 2rem;
    color: var(--main-color);
-   margin: .5rem 0;
+   margin: 0.5rem 0;
 }
 
-.show-products .box-container .box .details{
+.show-products .box-container .box .details {
    font-size: 1.5rem;
    color: var(--light-color);
    line-height: 2;
 }
 
 /* Update Product Form */
-.update-product form{
+.update-product form {
    background-color: var(--white);
    box-shadow: var(--box-shadow);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    border: var(--border);
    padding: 2rem;
    max-width: 50rem;
    margin: 0 auto;
 }
 
-.update-product form .image-container{
+.update-product form .image-container {
    margin-bottom: 2rem;
 }
 
-.update-product form .image-container .main-image img{
+.update-product form .image-container .main-image img {
    height: 20rem;
    width: 100%;
    object-fit: contain;
 }
 
-.update-product form .image-container .sub-image{
+.update-product form .image-container .sub-image {
    display: flex;
    gap: 1rem;
    justify-content: center;
    margin: 1rem 0;
 }
 
-.update-product form .image-container .sub-image img{
+.update-product form .image-container .sub-image img {
    height: 5rem;
    width: 7rem;
    object-fit: contain;
-   padding: .5rem;
+   padding: 0.5rem;
    border: var(--border);
    cursor: pointer;
-   transition: .2s linear;
+   transition: 0.2s linear;
 }
 
-.update-product form .image-container .sub-image img:hover{
+.update-product form .image-container .sub-image img:hover {
    transform: scale(1.1);
 }
 
-.update-product form .box{
+.update-product form .box {
    width: 100%;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    padding: 1.4rem;
    font-size: 1.6rem;
    color: var(--black);
@@ -474,12 +483,12 @@ section{
    margin: 1rem 0;
 }
 
-.update-product form span{
+.update-product form span {
    font-size: 1.6rem;
    color: var(--light-color);
 }
 
-.update-product form textarea{
+.update-product form textarea {
    height: 15rem;
    resize: none;
 }
@@ -577,11 +586,11 @@ table tbody tr:nth-child(odd) {
    color: var(--black);
 }
 
-.highlight-message{
+.highlight-message {
    background-color: lightgreen;
 }
 
-.orders .box-container{
+.orders .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, 33rem);
    gap: 1.5rem;
@@ -589,39 +598,39 @@ table tbody tr:nth-child(odd) {
    justify-content: center;
 }
 
-.orders .box-container .box{
+.orders .box-container .box {
    padding: 2rem;
    padding-top: 1rem;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    border: var(--border);
    background-color: var(--white);
    box-shadow: var(--box-shadow);
 }
 
-.orders .box-container .box p{
+.orders .box-container .box p {
    line-height: 1.5;
    font-size: 1.8rem;
    color: var(--light-color);
    margin: 1rem 0;
 }
 
-.orders .box-container .box p span{
+.orders .box-container .box p span {
    color: var(--main-color);
 }
 
-.orders .box-container .select{
-   margin-bottom: .5rem;
+.orders .box-container .select {
+   margin-bottom: 0.5rem;
    width: 100%;
    background-color: var(--light-bg);
    padding: 1rem;
    font-size: 1.6rem;
    color: var(--black);
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    border: var(--border);
 }
 
 /* Accounts */
-.accounts .box-container{
+.accounts .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, 33rem);
    gap: 1.5rem;
@@ -629,28 +638,28 @@ table tbody tr:nth-child(odd) {
    justify-content: center;
 }
 
-.accounts .box-container .box{
+.accounts .box-container .box {
    padding: 2rem;
-   padding-top: .5rem;
-   border-radius: .5rem;
+   padding-top: 0.5rem;
+   border-radius: 0.5rem;
    text-align: center;
    border: var(--border);
    background-color: var(--white);
    box-shadow: var(--box-shadow);
 }
 
-.accounts .box-container .box p{
+.accounts .box-container .box p {
    font-size: 1.8rem;
    color: var (--light-color);
    margin: 1rem 0;
 }
 
-.accounts .box-container .box p span{
+.accounts .box-container .box p span {
    color: var(--main-color);
 }
 
 /* Contacts */
-.contacts .box-container{
+.contacts .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, 33rem);
    gap: 1.5rem;
@@ -658,80 +667,115 @@ table tbody tr:nth-child(odd) {
    justify-content: center;
 }
 
-.contacts .box-container .box{
+.contacts .box-container .box {
    padding: 2rem;
    padding-top: 1rem;
-   border-radius: .5rem;
+   border-radius: 0.5rem;
    border: var(--border);
    background-color: var(--white);
    box-shadow: var(--box-shadow);
 }
 
-.contacts .box-container .box p{
+.contacts .box-container .box p {
    line-height: 1.5;
    font-size: 1.8rem;
    color: var(--light-color);
    margin: 1rem 0;
 }
 
-.contacts .box-container .box p span{
+.contacts .box-container .box p span {
    color: var(--main-color);
 }
 
 /* Media Queries */
-@media (max-width: 991px){
-   html{
+@media (max-width: 991px) {
+   html {
       font-size: 57.5%;
    }
 }
 
-@media (max-width: 768px){
-   #menu-btn{
+@media (max-width: 768px) {
+   #menu-btn {
       display: inline-block;
    }
 
-   .header .flex .navbar{
+   .header .flex .navbar {
       position: absolute;
-      top: 99%; left: 0; right: 0;
+      top: 99%;
+      left: 0;
+      right: 0;
       border-top: var(--border);
       border-bottom: var(--border);
       background-color: var(--white);
-      transition: .2s linear;
+      transition: 0.2s linear;
       clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
    }
 
-   .header .flex .navbar.active{
+   .header .flex .navbar.active {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
    }
 
-   .header .flex .navbar a{
+   .header .flex .navbar a {
       display: block;
       margin: 2rem;
    }
 }
 
-@media (max-width: 450px){
-   html{
+@media (max-width: 450px) {
+   .filter-form {
+      flex-direction: column;
+      align-items: stretch;
+   }
+
+   .filter-form label,
+   .filter-form select,
+   .filter-form input[type="submit"] {
+      width: 100%;
+      margin-bottom: 10px;
+   }
+
+   table{
+      width: 99vh;
+      font-size: smaller;
+   }
+
+   th,
+   td {
+      padding: 10px;
+   }
+
+   td {
+      border-bottom: 1px solid #ddd;
+   }
+
+   td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+   }
+
+   html {
       font-size: 50%;
    }
 
-   .heading{
+   .heading {
       font-size: 3.2rem;
    }
 
-   .flex-btn{
+   .flex-btn {
       flex-flow: column;
       gap: 0;
    }
 
-   .add-products form textarea{
+   .add-products form textarea {
       height: 15rem;
    }
 
    .show-products .box-container,
    .orders .box-container,
    .accounts .box-container,
-   .contacts .box-container{
+   .contacts .box-container {
       grid-template-columns: 1fr;
    }
 }

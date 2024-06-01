@@ -5,6 +5,11 @@ session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
+if (!isset($admin_id)) {
+    header('location:../user_login.php');
+}
+;
+
 // Function to get total sales for a specific period
 function getTotalSales($start_date, $end_date)
 {
@@ -41,6 +46,16 @@ function getMostPurchasedProduct($start_date, $end_date)
     return $most_purchased_product;
 }
 
+// Function to get order details for a specific period
+function getOrderDetails($start_date, $end_date)
+{
+    global $conn;
+
+    $select_orders = $conn->prepare("SELECT * FROM `sales_history` WHERE placed_on BETWEEN ? AND ?");
+    $select_orders->execute([$start_date, $end_date]);
+    return $select_orders->fetchAll(PDO::FETCH_ASSOC);
+}
+
 // Process form submission and display report
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Retrieve selected year, month, and day from form
@@ -60,13 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $end_date = $start_date;
     }
 
-    // Get total sales and most purchased product for the specified period
+    // Get order details, total sales, and most purchased product for the specified period
+    $order_details = getOrderDetails($start_date, $end_date);
     $total_sales = getTotalSales($start_date, $end_date);
     $most_purchased_product = getMostPurchasedProduct($start_date, $end_date);
 }
 
 ?>
-<?php include '../components/admin_header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,38 +93,53 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <link rel="stylesheet" href="../css/admin_style.css">
     <title>Sales Report</title>
     <style>
-        h1 {
-            text-align: center;
-        }
-
         table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
+            font-size: medium;
         }
 
         .filter-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
+            gap: 10px;
         }
 
-        .filter-form select {
-            margin-right: 10px;
+        .filter-form label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .filter-form select,
+        .filter-form input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .filter-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            /* Rounded corners */
+        }
+
+        .filter-form input[type="submit"]:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 
+<?php include '../components/admin_header.php'; ?>
+
 <body>
-    <h1>Sales Report</h1>
+    <center>
+        <h1>Sales Report</h1>
+    </center>
 
     <form class="filter-form" action="" method="get">
         <label for="year">Year:</label>
@@ -130,18 +160,60 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 <option value="<?= $i ?>"><?= $i ?></option>
             <?php endfor; ?>
         </select>
-        <input type="submit" value="Generate Report">
+        <input type="submit" value="Generate Report" class="generate">
     </form>
+
+
     <table>
-        <tr>
-            <th>Total Sales</th>
-            <td>Nrs.<?= $total_sales ?>/-</td>
-        </tr>
-        <tr>
-            <th>Most Purchased Product</th>
-            <td><?= $most_purchased_product ?></td>
-        </tr>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Placed On</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+                <th>Method</th>
+                <th>Payment Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($order_details)):
+                foreach ($order_details as $order): ?>
+                    <tr>
+                        <td><?= $order['user_id'] ?></td>
+                        <td><?= $order['placed_on'] ?></td>
+                        <td><?= $order['product_name'] ?></td>
+                        <td><?= $order['quantity'] ?></td>
+                        <td>Nrs.<?= $order['price'] ?>/-</td>
+                        <td>Nrs.<?= $order['total_price'] ?>/-</td>
+                        <td><?= $order['method'] ?></td>
+                        <td><?= $order['payment_status'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <th colspan="8" style="text-align: center; color: red;">
+                        No orders found for the selected period.
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    <?php endif; ?>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Total Sales</th>
+                <td>Nrs.<?= $total_sales ?>/-</td>
+            </tr>
+            <tr>
+                <th>Most Purchased Product</th>
+                <td><?= $most_purchased_product ?></td>
+            </tr>
+        </thead>
     </table>
 </body>
+<script src="../js/admin_script.js"></script>
 
 </html>

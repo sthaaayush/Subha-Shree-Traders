@@ -131,7 +131,7 @@ if (isset($_GET['delete'])) {
                            <div class="flex-btn">
                               <input type="submit" value="update" class="option-btn" name="update_payment">
                               <a href="placed_orders.php?delete=<?= $fetch_orders['id']; ?>" class="delete-btn"
-                                 onclick="return confirm('delete this order?');">Save</a>
+                                 onclick="return confirm('Save this order?');">Save</a>
                            </div>
                            </form>
                         </td>

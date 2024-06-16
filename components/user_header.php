@@ -1,5 +1,5 @@
 <?php
-if (isset($message)) {
+if (isset($message)&&!empty($message)) {
    
       echo '
          <div class="message">

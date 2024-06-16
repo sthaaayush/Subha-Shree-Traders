@@ -9,10 +9,13 @@ if (isset($_SESSION['user_id'])) {
 } else {
    $user_id = '';
 }
-;
+
+$message = ''; // Initialize $message to avoid undefined variable notice
+
+// Initialize variables for form fields
+$name = $email = $pass = $cpass = $number = $address = '';
 
 if (isset($_POST['submit'])) {
-
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
@@ -26,8 +29,8 @@ if (isset($_POST['submit'])) {
    $address = $_POST['address'];
    $address = filter_var($address, FILTER_SANITIZE_STRING);
 
-   // Validate email format
-   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+   // Use regex to validate email format
+   if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match('/^[\w\.-]+@[\w\.-]+\.[a-zA-Z]{2,6}$/', $email) || preg_match('/\.com\.[a-zA-Z]{2,}$/', $email)) {
       $message = 'Invalid email format!';
    } else {
       // Validate password length
@@ -43,27 +46,30 @@ if (isset($_POST['submit'])) {
                $message = 'Phone number must be 10 digits long!';
             } else {
                $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
-               $select_user->execute([$email,]);
+               $select_user->execute([$email]);
                $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
                if ($select_user->rowCount() > 0) {
                   $message = 'Email already exists!';
+                  // Clear the form values upon successful registration
+                  $name = $email = $number = $address = '';
                } else {
                   if ($pass != $cpass) {
                      $message = 'Confirm password not matched!';
                   } else {
                      $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password, number, address) VALUES(?,?,?,?,?)");
-                     $insert_user->execute([$name, $email, $cpass, $number, $address]);
+                     $insert_user->execute([$name, $email, $pass, $number, $address]);
                      $message = 'Registered successfully, login now please!';
+
+                     // Clear the form values upon successful registration
+                     $name = $email = $number = $address = '';
                   }
                }
             }
          }
       }
    }
-
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +88,7 @@ if (isset($_POST['submit'])) {
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
+
 </head>
 
 <body>
@@ -91,23 +98,27 @@ if (isset($_POST['submit'])) {
    <section class="form-container">
       <form action="" method="post">
          <h3>Register Now.</h3>
+         <?php
+         if (!empty($message)) {
+            echo '<p class="error-message" style="color: orangered; font-weight: bold;">' . $message . '</p>';
+         }
+         ?>
          <input type="text" name="name" required placeholder="Enter your Username" maxlength="20" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')">
+            value="<?= htmlspecialchars($name); ?>" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="email" name="email" required placeholder="Enter your Email" maxlength="50" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')">
+            value="<?= htmlspecialchars($email); ?>" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="Enter your Password (min. 8 characters)" minlength="8"
             maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="cpass" required placeholder="Confirm your Password" maxlength="20" class="box"
             oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="number" name="number" required placeholder="Enter your Phone Number"  maxlength="10" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="text" name="number" required placeholder="Enter your Phone Number" maxlength="10" class="box"
+            value="<?= htmlspecialchars($number); ?>" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="text" name="address" required placeholder="Enter your Address" maxlength="80" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')">
+            value="<?= htmlspecialchars($address); ?>" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="register now" class="btn" name="submit">
          <p>Already have an account?</p>
          <a href="user_login.php" class="option-btn">Login Now.</a>
       </form>
-
    </section>
 
    <?php include 'components/footer.php'; ?>

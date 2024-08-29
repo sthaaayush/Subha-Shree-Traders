@@ -14,7 +14,6 @@ Subha Shree Traders is an e-commerce site developed as a summer project while be
 - Shopping cart management
 - Order processing and history
 - Admin panel for product and order management
-## Installation
 
 ## **Installation**
 

@@ -31,7 +31,7 @@ Subha Shree Traders is an e-commerce site developed as a summer project while be
 - Start XAMPP and ensure the MySQL server is running.
 - Open phpMyAdmin by navigating to http://localhost/phpmyadmin in your browser.
 - Create a new database named [shop_db].
-- Import the shop_db.sql file into the newly created database. You can do this through phpMyAdmin by selecting the database and using the Import feature to upload shop_db.sql.
+- Import the [shop_db.sql](shop_db.sql) file into the newly created database. You can do this through phpMyAdmin by selecting the database and using the Import feature to upload shop_db.sql.
 - Run XAMPP server to host locally
 4. Run the program
 

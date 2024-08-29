@@ -37,9 +37,9 @@ Subha Shree Traders is an e-commerce site developed as a summer project while be
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](Screenshots/Screenshot 2024-08-29 113643)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](Screenshots/Screenshot 2024-08-29 113643)
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 

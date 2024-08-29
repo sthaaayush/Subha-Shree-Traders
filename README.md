@@ -37,13 +37,13 @@ Subha Shree Traders is an e-commerce site developed as a summer project while be
 
 ## Screenshots
 
-![App Screenshot](Screenshots/Screenshot 2024-08-29 113643)
+![App Screenshot](screenshots/Screenshot1)
 
-![App Screenshot](Screenshots/Screenshot 2024-08-29 113643)
+![App Screenshot](screenshots/Screenshot2)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](screenshots/Screenshot3)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](screenshots/Screenshot4)
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes. For major changes, please open an issue first to discuss what you would like to change.

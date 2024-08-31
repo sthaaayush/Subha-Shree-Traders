@@ -5,7 +5,7 @@ Subha Shree Traders is an e-commerce site developed as a summer project while be
 
 ## **Technologies Used**
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap
-- **Backend:** Java
+- **Backend:** PHP
 - **Database:** MySQL
 
 ## **Features**

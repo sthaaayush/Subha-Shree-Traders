@@ -1,7 +1,7 @@
 # **Subha Shree Traders**
 
 ## **Description**
-Subha Shree Traders is an e-commerce site developed as a summer project while being a BIM student. The site offers a platform for users to browse and purchase various products. It includes features such as user registration, product management, and order processing.
+Subha Shree Traders is an e-commerce site . The site offers a platform for users to browse and purchase various products. It includes features such as user registration, product management, and order processing.
 
 ## **Technologies Used**
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap
